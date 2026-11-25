@@ -5,6 +5,7 @@ Personal agent skills (Devin, Claude). One folder per skill, each with a `SKILL.
 | Skill | Use |
 |---|---|
 | [project-grill](project-grill/SKILL.md) | Start of a project: interview the user, then write GLOSSARY.md, SPEC.md, DESIGN.md, AGENTS.md, README.md |
+| [implement-spec](implement-spec/SKILL.md) | Audit code against SPEC.md/DESIGN.md, then fix gaps and write missing code test-first |
 
 ## Install (Linux)
 ```
