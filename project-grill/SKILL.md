@@ -28,7 +28,7 @@ Topics, in order:
 2. **Scope**: must-have for v1; explicit non-goals (what must NOT be built; removing beats adding); what can wait.
 3. **Behavior**: core flows end to end, inputs/outputs, concrete examples, acceptance criteria per flow.
 4. **Domain**: entities, their relationships, states and transitions, vocabulary, overloaded or ambiguous words.
-5. **Architecture**: stack, hosting, data storage, external services/APIs, auth, local vs deployed, existing code to reuse.
+5. **Architecture**: stack, hosting, data storage, external services/APIs, auth, local vs deployed, existing code to reuse. For each significant choice (hard to reverse, spans components, or had real alternatives) ask: options considered, why this one, what it costs. These become ADRs.
 6. **Constraints**: budget, performance, security/secrets, privacy, legal, deadlines, who operates it.
 7. **Failure modes** (invert): "It is 3 months later and this failed. Why?" Then: what are the second-order effects of the main design choices? What is irreversible?
 8. **Quality**: how is "done" verified: tests, commands, manual checks, lint, CI.
@@ -71,15 +71,32 @@ No implementation detail here.
 - **Data model**: entities, key fields, relations, state transitions.
 - **Interfaces**: endpoints, CLI commands, events, external APIs; signatures only.
 - **Structure**: top-level folder map, one line each.
-- **Decisions**: `D-1: choice, rejected alternative, reason`. Include irreversible ones.
+- **Decisions**: index only, one line each: `ADR-0001 <title> (status)`. Detail lives in `docs/adr/`.
 - **Risks**: failure modes from the interview and mitigation.
 - **Hosting & config**: env vars (names only, never values), deploy target.
+
+### docs/adr/NNNN-title.md (≤ 25 lines each; not loaded by default)
+One file per significant decision. Number sequentially (`0001-...`). Skip trivial choices; those go in the DESIGN stack table "Why" column.
+```
+# ADR-NNNN: <decision as a short phrase>
+Status: proposed | accepted | superseded by ADR-NNNN
+Date: YYYY-MM-DD
+## Context
+<problem and constraints, 2-4 lines>
+## Decision
+<what we do, 1-3 lines>
+## Alternatives
+- <option>: <why rejected>
+## Consequences
+- <trade-offs, what gets harder, how to reverse>
+```
+Accepted ADRs are immutable except Status. To change a decision, add a new ADR and mark the old one superseded.
 
 ### AGENTS.md (≤ 80 lines): always loaded, smallest and most important
 - **Project**: one line + pointer: "Read GLOSSARY.md first; SPEC.md for what; DESIGN.md for how."
 - **Commands**: install, run, test, lint, build. Exact, copy-pasteable.
 - **Conventions**: code style, naming, error handling, logging, test placement.
-- **Rules**: do / never. Include: never commit secrets; never expand scope beyond SPEC.md; prefer deleting to adding; ask before new dependencies, schema changes, or anything in Non-goals.
+- **Rules**: do / never. Include: read the relevant ADR in `docs/adr/` before changing what it covers; never edit an accepted ADR, supersede it with a new one; never commit secrets; never expand scope beyond SPEC.md; prefer deleting to adding; ask before new dependencies, schema changes, or anything in Non-goals.
 - **Workflow**: branch/commit/PR conventions; plan before multi-file changes; run tests before declaring done.
 - **Definition of done**: checklist tied to SPEC acceptance criteria.
 - **Stop and ask when**: list the project-specific triggers.
@@ -93,6 +110,7 @@ Name, one-sentence purpose, status, quickstart (install/run in ≤ 5 commands), 
 Check, fix, then report in ≤ 5 lines:
 - Every SPEC flow has acceptance criteria; every acceptance criterion is testable.
 - Every DESIGN component traces to a SPEC flow; nothing in DESIGN violates a non-goal.
+- Every ADR in the DESIGN index exists, has a status, and names at least one rejected alternative.
 - Terms match GLOSSARY everywhere.
 - Line budgets met; no duplicated facts.
 - List remaining `TODO(question)` items.

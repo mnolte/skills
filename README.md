@@ -15,3 +15,5 @@ Personal agent skills (Devin, Claude). One folder per skill, each with a `SKILL.
 ./install.sh -l           # list
 ```
 Global installs are symlinks, so `git pull` updates every project. Edit skills here, never inside a project.
+
+Both skills use ADRs (`docs/adr/NNNN-title.md`) for significant decisions; DESIGN.md only indexes them.
