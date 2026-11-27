@@ -6,6 +6,7 @@ Personal agent skills (Devin, Claude). One folder per skill, each with a `SKILL.
 |---|---|
 | [project-grill](project-grill/SKILL.md) | Start of a project: interview the user, then write GLOSSARY.md, SPEC.md, DESIGN.md, AGENTS.md, README.md |
 | [implement-spec](implement-spec/SKILL.md) | Audit code against SPEC.md/DESIGN.md, then fix gaps and write missing code test-first |
+| [debug](debug/SKILL.md) | A bug blocks work: reproduce, find the root cause, fix it completely, feed the lesson back into the docs, resume |
 
 ## Install (Linux)
 ```
@@ -16,7 +17,7 @@ Personal agent skills (Devin, Claude). One folder per skill, each with a `SKILL.
 ```
 Global installs are symlinks, so `git pull` updates every project. Edit skills here, never inside a project.
 
-Both skills use ADRs (`docs/adr/NNNN-title.md`) for significant decisions; DESIGN.md only indexes them.
+All skills use ADRs (`docs/adr/NNNN-title.md`) for significant decisions; DESIGN.md only indexes them.
 
 ## Credits
 See [CREDITS.md](CREDITS.md).
